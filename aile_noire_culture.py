@@ -39,9 +39,9 @@ red = (244, 12, 12)
 purple = (106, 5, 86)
 
 #BDD QUESTIONS
-##AJOUTER LES QUESTIONS LEAGUE OF LEGENDS
-def addLolQuestions():
-    with open('playlists/LeagueOfLegends.csv', 'r') as read_obj:
+##AJOUTER LES QUESTIONS
+def addQuestions(playlist):
+    with open('playlists/' + playlist + '.csv', 'r') as read_obj:
         csv_reader = reader(read_obj)
         header = next(csv_reader)
         if header != None:
@@ -63,18 +63,6 @@ def addNormalQuestions():
     questionLabel.extend(normalQuestionLabel)
     questionDifficulty.extend(normalQuestionDifficulty)
     questionCorrection.extend(normalQuestionCorrection)
-
-##AJOUTER LES QUESTIONS CHEVEUX VERTS
-def addCheveuxVertsQuestions():
-    with open('playlists/CheveuxVerts.csv', 'r') as read_obj:
-        csv_reader = reader(read_obj)
-        header = next(csv_reader)
-        if header != None:
-            for row in csv_reader:
-                questionImage.append("questions/" + row[0] + ".png")
-                questionLabel.append(row[1])
-                questionDifficulty.append(row[2])
-                questionCorrection.append(row[3])
 
 questionImage = []
 questionLabel = []
@@ -375,11 +363,11 @@ def playlist_selection():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if lolPlaylistActive:
-                        addLolQuestions()
+                        addQuestions("LeagueOfLegends")
                     if normalPlaylistActive:
-                        addNormalQuestions()
+                        addQuestions("LeagueOfLegends")
                     if cheveuxVertsPlaylistActive:
-                        addCheveuxVertsQuestions()
+                        addQuestions("CheveuxVerts")
                     question()
 
 
