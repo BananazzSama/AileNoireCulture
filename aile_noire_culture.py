@@ -46,7 +46,6 @@ def addLolQuestions():
         header = next(csv_reader)
         if header != None:
             for row in csv_reader:
-                print(row[0])
                 questionImage.append("questions/" + row[0] + ".png")
                 questionLabel.append(row[1])
                 questionDifficulty.append(row[2])
@@ -72,7 +71,6 @@ def addCheveuxVertsQuestions():
         header = next(csv_reader)
         if header != None:
             for row in csv_reader:
-                print(row[0])
                 questionImage.append("questions/" + row[0] + ".png")
                 questionLabel.append(row[1])
                 questionDifficulty.append(row[2])
