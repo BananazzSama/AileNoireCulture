@@ -41,7 +41,7 @@ purple = (106, 5, 86)
 #BDD QUESTIONS
 ##AJOUTER LES QUESTIONS
 def addQuestions(playlist):
-    with open('playlists/' + playlist + '.csv', 'r') as read_obj:
+    with open('playlists/' + horreur + '.csv', 'r') as read_obj:
         csv_reader = reader(read_obj)
         header = next(csv_reader)
         if header != None:
