@@ -41,7 +41,7 @@ purple = (106, 5, 86)
 #BDD QUESTIONS
 ##AJOUTER LES QUESTIONS
 def addQuestions(playlist):
-    with open('playlists/' + horreur + '.csv', 'r') as read_obj:
+    with open('playlists/' + playlist + '.csv', 'r') as read_obj:
         csv_reader = reader(read_obj)
         header = next(csv_reader)
         if header != None:
@@ -85,7 +85,7 @@ userScore = 0
 
 
 questionNumber = 0
-howManyQuestions = 2   #int(input())
+howManyQuestions = 22   #int(input())
 
 lolPlaylistActive = False
 normalPlaylistActive = False
@@ -363,7 +363,7 @@ def playlist_selection():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if lolPlaylistActive:
-                        addQuestions("LeagueOfLegends")
+                        addQuestions("horreur")
                     #if normalPlaylistActive:
                     #    addQuestions("LeagueOfLegends")
                     if cheveuxVertsPlaylistActive:
