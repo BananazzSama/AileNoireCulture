@@ -65,8 +65,18 @@ def addNormalQuestions():
     questionDifficulty.extend(normalQuestionDifficulty)
     questionCorrection.extend(normalQuestionCorrection)
 
-
-
+##AJOUTER LES QUESTIONS CHEVEUX VERTS
+def addCheveuxVertsQuestions():
+    with open('playlists/CheveuxVerts.csv', 'r') as read_obj:
+        csv_reader = reader(read_obj)
+        header = next(csv_reader)
+        if header != None:
+            for row in csv_reader:
+                print(row[0])
+                questionImage.append("questions/" + row[0] + ".png")
+                questionLabel.append(row[1])
+                questionDifficulty.append(row[2])
+                questionCorrection.append(row[3])
 
 questionImage = []
 questionLabel = []
@@ -93,6 +103,7 @@ howManyQuestions = 2   #int(input())
 
 lolPlaylistActive = False
 normalPlaylistActive = False
+cheveuxVertsPlaylistActive = False
 
 
 
@@ -297,26 +308,41 @@ def playlist_selection():
 
     global lolPlaylistActive
     global normalPlaylistActive
+    global cheveuxVertsPlaylistActive
 
     lolPlaylist = defaultFont.render("League of Legends", True, white)
-    lolPlaylistRect = lolPlaylist.get_rect(center=(display_width/2, 20))
-    activateLolPlaylistButton = pygame.Rect(0, 0, 700, 60)
-    deactivateLolPlaylistButton = pygame.Rect(0, 100, 700, 60)
+    lolPlaylistRect = lolPlaylist.get_rect(topleft=(20, 20))
+    deactivateLolPlaylistButton = pygame.image.load("ui/deactivate.png")
+    activateLolPlaylistButton = pygame.image.load("ui/activate.png")
+    deactivateLolPlaylistButtonRect = deactivateLolPlaylistButton.get_rect(topleft=(300, 28))
+    activateLolPlaylistButtonRect = deactivateLolPlaylistButton.get_rect(topleft=(350, 28))
 
+    cheveuxVertsPlaylist = defaultFont.render("Cheveux Verts", True, white)
+    cheveuxVertsPlaylistRect = cheveuxVertsPlaylist.get_rect(topleft=(20, 60))
+    deactivateCheveuxVertsPlaylistButton = pygame.image.load("ui/deactivate.png")
+    activateCheveuxVertsPlaylistButton = pygame.image.load("ui/activate.png")
+    deactivateCheveuxVertsPlaylistButtonRect = deactivateCheveuxVertsPlaylistButton.get_rect(topleft=(300, 68))
+    activateCheveuxVertsPlaylistButtonRect = activateCheveuxVertsPlaylistButton.get_rect(topleft=(350, 68))
 
     normalPlaylist = defaultFont.render("Normal", True, white)
     normalPlaylistRect = normalPlaylist.get_rect(center=(display_width/2, 60))
-    activateNormalPlaylistButton = pygame.Rect(0, 300, 700, 60)
-    deactivateNormalPlaylistButton = pygame.Rect(0, 400, 700, 60)
+    deactivateNormalPlaylistButton = pygame.image.load("ui/deactivate.png")
+    activateNormalPlaylistButton = pygame.image.load("ui/activate.png")
+    deactivateNormalPlaylistButtonRect = deactivateNormalPlaylistButton.get_rect(topleft=(300, 28))
+    activateNormalPlaylistButtonRect = deactivateNormalPlaylistButton.get_rect(topleft=(350, 28))
+
+
 
     while play:
         screen.fill(darkgrey)
 
-        pygame.draw.rect(screen, black, activateLolPlaylistButton)
-        pygame.draw.rect(screen, grey, deactivateLolPlaylistButton)
+        screen.blit(lolPlaylist, lolPlaylistRect)
+        screen.blit(deactivateLolPlaylistButton, deactivateLolPlaylistButtonRect)
+        screen.blit(activateLolPlaylistButton, activateLolPlaylistButtonRect)
 
-        pygame.draw.rect(screen, black, activateNormalPlaylistButton)
-        pygame.draw.rect(screen, grey, deactivateNormalPlaylistButton)
+        screen.blit(cheveuxVertsPlaylist, cheveuxVertsPlaylistRect)
+        screen.blit(deactivateCheveuxVertsPlaylistButton, deactivateCheveuxVertsPlaylistButtonRect)
+        screen.blit(activateCheveuxVertsPlaylistButton, activateCheveuxVertsPlaylistButtonRect)
 
         #screen.blit(lolPlaylist, lolPlaylistRect)
         #screen.blit(normalPlaylist, normalPlaylistRect)
@@ -329,18 +355,24 @@ def playlist_selection():
             x, y = pygame.mouse.get_pos()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.mouse.get_pressed()[0]:
-                    if activateLolPlaylistButton.collidepoint(x, y):
+                    if activateLolPlaylistButtonRect.collidepoint(x, y):
                         print("Playlist LoL ACTIVE")
                         lolPlaylistActive = True
-                    elif deactivateLolPlaylistButton.collidepoint(x, y):
+                    elif deactivateLolPlaylistButtonRect.collidepoint(x, y):
                         print("Playlist LoL INACTIVE")
                         lolPlaylistActive = False
-                    elif activateNormalPlaylistButton.collidepoint(x, y):
+                    elif activateNormalPlaylistButtonRect.collidepoint(x, y):
                         print("Playlist Normal ACTIVE")
                         normalPlaylistActive = True
-                    elif deactivateNormalPlaylistButton.collidepoint(x, y):
+                    elif deactivateNormalPlaylistButtonRect.collidepoint(x, y):
                         print("Playlist Normal INACTIVE")
                         normalPlaylistActive = False
+                    elif activateCheveuxVertsPlaylistButtonRect.collidepoint(x, y):
+                        print("Playlist Cheveux Verts ACTIVE")
+                        cheveuxVertsPlaylistActive = True
+                    elif deactivateCheveuxVertsPlaylistButtonRect.collidepoint(x, y):
+                        print("Playlist Cheveux Verts INACTIVE")
+                        cheveuxVertsPlaylistActive = False
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
@@ -348,6 +380,8 @@ def playlist_selection():
                         addLolQuestions()
                     if normalPlaylistActive:
                         addNormalQuestions()
+                    if cheveuxVertsPlaylistActive:
+                        addCheveuxVertsQuestions()
                     question()
 
 
