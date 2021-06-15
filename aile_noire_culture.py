@@ -364,8 +364,8 @@ def playlist_selection():
                 if event.key == pygame.K_RETURN:
                     if lolPlaylistActive:
                         addQuestions("LeagueOfLegends")
-                    if normalPlaylistActive:
-                        addQuestions("LeagueOfLegends")
+                    #if normalPlaylistActive:
+                    #    addQuestions("LeagueOfLegends")
                     if cheveuxVertsPlaylistActive:
                         addQuestions("CheveuxVerts")
                     question()
