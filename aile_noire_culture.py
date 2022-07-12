@@ -363,7 +363,7 @@ def playlist_selection():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     if lolPlaylistActive:
-                        addQuestions("horreur")
+                        addNormalQuestions()
                     #if normalPlaylistActive:
                     #    addQuestions("LeagueOfLegends")
                     if cheveuxVertsPlaylistActive:
