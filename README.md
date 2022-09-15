@@ -1,2 +1,2 @@
 # AileNoireCulture
-Le jeu de culture ultime !
+Le jeu de culture geek ultime !
